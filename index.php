@@ -50,7 +50,7 @@ header("Pragma: no-cache");
             <h1 class="text-2xl font-bold text-gray-800">SCHOOL NAME</h1>
         </div>
         
-        <form class="space-y-6" method="POST" action="auth.php">
+        <form class="space-y-6" method="POST" action="auth/auth.php">
             <?php if(isset($_SESSION['error'])): ?>
                 <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
                     <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>

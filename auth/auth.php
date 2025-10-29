@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config/database.php';
+require_once '../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -25,13 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Redirect based on role
             switch ($user['role']) {
                 case 'admin':
-                    header("Location: portal/admin_portal.php");
+                    header("Location: ../portal/admin_portal.php");
                     exit;
                 case 'student':
-                    header("Location: portal/student_portal.php");
+                    header("Location: ../portal/student_portal.php");
                     exit;
                 case 'teacher':
-                    header("Location: portal/teacher_portal.php");
+                    header("Location: ../portal/teacher_portal.php");
                     exit;
                 default:
                     $_SESSION['error'] = "Role not recognized.";
@@ -41,19 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         } else {
             $_SESSION['error'] = "Incorrect username or password.";
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit;
         }
 
     } else {
         $_SESSION['error'] = "Incorrect username or password.";
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     }
 
 } else {
     // If someone accesses auth.php directly, redirect to login
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 ?>

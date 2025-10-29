@@ -15,7 +15,7 @@ if ($_SESSION['role'] !== 'student') {
 ?>
 
 
-<a href="../logout.php" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+<a href="../auth/logout.php" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
     Logout
 </a>
 <h1>STUDENT</h1?
