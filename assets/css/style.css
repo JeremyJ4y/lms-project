@@ -1,0 +1,14 @@
+/* Background image for login page */
+body {
+  background-image: url('../../images/your-design-here.png'); /* ← palitan mo kung nasa ibang folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Optional white transparent background for the login box */
+.bg-overlay {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+}
