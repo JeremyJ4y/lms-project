@@ -24,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect based on role
             switch ($user['role']) {
-                case 'admin':
+                case 'Admin':
                     header("Location: ../portal/admin_portal.php");
                     exit;
-                case 'student':
+                case 'Student':
                     header("Location: ../portal/student_portal.php");
                     exit;
-                case 'teacher':
+                case 'Teacher':
                     header("Location: ../portal/teacher_portal.php");
                     exit;
                 default:

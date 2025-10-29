@@ -8,7 +8,7 @@ if (!isset($_SESSION['role'])) {
 }
 
 // Optional: restrict based on role
-if ($_SESSION['role'] !== 'teacher') {
+if ($_SESSION['role'] !== 'Teacher') {
     header("Location: ../index.php");
     exit;
 }
