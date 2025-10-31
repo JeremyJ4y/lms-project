@@ -1,6 +1,32 @@
 <?php
-session_start();
+require_once '../config/session_config.php';
 require_once '../config/database.php';
+require_once '../base_url.php'; // ✅ Include base URL
+
+// ✅ Limit login attempts (10 tries, 10 minutes lock)
+$lock_duration = 10 * 60; // 10 minutes in seconds
+$max_attempts = 10; // ✅ changed from 5 to 10
+
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+    $_SESSION['last_attempt_time'] = 0;
+}
+
+// Check if user is currently locked out
+if ($_SESSION['login_attempts'] >= $max_attempts) {
+    $time_since_last_attempt = time() - $_SESSION['last_attempt_time'];
+
+    if ($time_since_last_attempt < $lock_duration) {
+        $remaining = ceil(($lock_duration - $time_since_last_attempt) / 60);
+        $_SESSION['error'] = "Too many failed attempts. Try again after $remaining minute(s).";
+        header("Location: " . $base_url . "index.php");
+        exit;
+    } else {
+        // Reset attempts after cooldown
+        $_SESSION['login_attempts'] = 0;
+        $_SESSION['last_attempt_time'] = 0;
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -17,43 +43,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (password_verify($password, $user['password'])) {
 
+            // ✅ Successful login resets attempts
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['last_attempt_time'] = 0;
+
             // Set session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
+            session_regenerate_id(true);
 
             // Redirect based on role
             switch ($user['role']) {
-                case 'Admin':
-                    header("Location: ../portal/admin_portal.php");
+                case 'admin':
+                    header("Location: " . $base_url . "portal/admin_portal.php");
                     exit;
-                case 'Student':
-                    header("Location: ../portal/student_portal.php");
+                case 'student':
+                    header("Location: " . $base_url . "portal/student_portal.php");
                     exit;
-                case 'Teacher':
-                    header("Location: ../portal/teacher_portal.php");
+                case 'teacher':
+                    header("Location: " . $base_url . "portal/teacher_portal.php");
                     exit;
                 default:
                     $_SESSION['error'] = "Role not recognized.";
-                    header("Location: index.php");
+                    header("Location: " . $base_url . "index.php");
                     exit;
             }
 
         } else {
+            // ❌ Wrong password
+            $_SESSION['login_attempts']++;
+            $_SESSION['last_attempt_time'] = time();
             $_SESSION['error'] = "Incorrect username or password.";
-            header("Location: ../index.php");
+            header("Location: " . $base_url . "index.php");
             exit;
         }
 
     } else {
+        // ❌ Username not found
+        $_SESSION['login_attempts']++;
+        $_SESSION['last_attempt_time'] = time();
         $_SESSION['error'] = "Incorrect username or password.";
-        header("Location: ../index.php");
+        header("Location: " . $base_url . "index.php");
         exit;
     }
 
 } else {
     // If someone accesses auth.php directly, redirect to login
-    header("Location: ../index.php");
+    header("Location: " . $base_url . "index.php");
     exit;
 }
 ?>

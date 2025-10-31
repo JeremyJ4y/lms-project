@@ -1,9 +1,8 @@
 <?php
-session_start();
-require_once 'config/database.php';
+require_once 'config/session_config.php';
 
-// Redirect logged-in users
-if (isset($_SESSION['role'])) {
+// If user is already logged in, redirect to their respective portal
+if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
     switch ($_SESSION['role']) {
         case 'admin':
             header("Location: portal/admin_portal.php");
@@ -17,27 +16,22 @@ if (isset($_SESSION['role'])) {
     }
 }
 
-// Prevent caching
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Pragma: no-cache");
+// Include base URL configuration
+include 'base_url.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login | EduSync</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/tailwind.min.js"></script>
-<script src="assets/js/feather.min.js"></script>
-<script>
-    // Prevent back button caching
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
-    window.history.pushState(null, null, window.location.href);
-    window.onpopstate = function () { window.history.go(1); };
-</script>
+
+<!-- ✅ CSS and JS paths now use $base_url -->
+<link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
+<script src="<?php echo $base_url; ?>assets/js/tailwind.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/feather.min.js"></script>
+
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-50">
 
@@ -45,13 +39,15 @@ header("Pragma: no-cache");
     <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 fade-in">
         <div class="text-center mb-8">
             <div class="w-24 h-24 mx-auto mb-4">
-                <img src="images/your-logo-here.png" alt="School Logo" class="w-full h-full object-contain">
+                <!-- ✅ Image uses base_url -->
+                <img src="<?php echo $base_url; ?>images/your-logo-here.png" alt="School Logo" class="w-full h-full object-contain">
             </div>
             <h1 class="text-2xl font-bold text-gray-800">SCHOOL NAME</h1>
         </div>
         
-        <form class="space-y-6" method="POST" action="auth/auth.php">
-            <?php if(isset($_SESSION['error'])): ?>
+        <!-- ✅ Form still works normally -->
+        <form class="space-y-6" method="POST" action="<?php echo $base_url; ?>auth/auth.php">
+            <?php if (isset($_SESSION['error'])): ?>
                 <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
                     <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
                 </div>
@@ -88,7 +84,7 @@ header("Pragma: no-cache");
                     <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
                 </div>
                 <div class="text-sm">
-                    <a href="forgot-password.html" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                    <a href="<?php echo $base_url; ?>forgot-password.html" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                 </div>
             </div>
 
@@ -102,6 +98,7 @@ header("Pragma: no-cache");
     </div>
 </main>
 
+<!-- ✅ Feather icons script -->
 <script>
 feather.replace();
 
@@ -113,6 +110,13 @@ togglePassword.addEventListener('click', function () {
     isVisible = !isVisible;
     password.type = isVisible ? 'text' : 'password';
     togglePassword.innerHTML = isVisible ? feather.icons['eye-off'].toSvg() : feather.icons['eye'].toSvg();
+});
+
+// ✅ Detect if page was loaded from cache (Back button)
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
 });
 </script>
 
