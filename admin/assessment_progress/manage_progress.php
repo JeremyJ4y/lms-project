@@ -16,7 +16,7 @@ if ($_SESSION['role'] !== 'admin') {
     <div class="wrapper d-flex flex-column min-vh-100">
 
     <?php include '../../includes/portal_navbar.php'; ?>
-    <h1>add teacher</h1>
+    <h1>manage progress</h1>
     </div>
 
 

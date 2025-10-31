@@ -16,8 +16,9 @@ if ($_SESSION['role'] !== 'admin') {
     <div class="wrapper d-flex flex-column min-vh-100">
 
     <?php include '../../includes/portal_navbar.php'; ?>
-    <h1>manage user</h1>
+    <h1>manage modules</h1>
     </div>
+
 
 
 </body>
