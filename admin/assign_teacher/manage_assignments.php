@@ -8,6 +8,7 @@ if ($_SESSION['role'] !== 'admin') {
     header("Location: " . $base_url . "index.php");
     exit;
 }
+$page_title = "Assignment";
 ?>
 
 <body>

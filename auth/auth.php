@@ -53,7 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['role'] = $user['role'];
             session_regenerate_id(true);
 
-            // Redirect based on role
+            // ✅ Update user status to online and log time
+            $update = $conn->prepare("UPDATE users SET is_online = 1, last_login = NOW() WHERE id = ?");
+            $update->bind_param("i", $user['id']);
+            $update->execute();
+
+            // ✅ Redirect based on role
             switch ($user['role']) {
                 case 'admin':
                     header("Location: " . $base_url . "portal/admin_portal.php");
@@ -69,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     header("Location: " . $base_url . "index.php");
                     exit;
             }
-
         } else {
             // ❌ Wrong password
             $_SESSION['login_attempts']++;

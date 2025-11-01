@@ -1,45 +1,4 @@
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Portal</title>
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>coreui/assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $base_url; ?>coreui/assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $base_url; ?>coreui/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $base_url; ?>coreui/assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $base_url; ?>coreui/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="<?php echo $base_url; ?>coreui/assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="<?php echo $base_url; ?>coreui/assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- Vendors styles -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>coreui/vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>coreui/css/vendors/simplebar.css">
-
-    <!-- Main styles for this application -->
-    <link href="<?php echo $base_url; ?>coreui/css/style.css" rel="stylesheet">
-    
-    <!-- Example styles -->
-    <link href="<?php echo $base_url; ?>coreui/css/examples.css" rel="stylesheet">
-
-    <!-- CoreUI Scripts -->
-    <script src="<?php echo $base_url; ?>coreui/js/config.js"></script>
-    <script src="<?php echo $base_url; ?>coreui/js/color-modes.js"></script>
-
-    <!-- Charts -->
-    <link href="<?php echo $base_url; ?>coreui/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
-</head>
-<body>
 <header class="header header-sticky p-0 mb-4">
     <div class="container-fluid border-bottom px-4">
         <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
@@ -47,11 +6,7 @@
                 <use xlink:href="<?php echo $base_url; ?>coreui/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
         </button>
-        <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-        </ul>
+    
         <ul class="header-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">
                 <svg class="icon icon-lg">
@@ -106,7 +61,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="<?php echo $base_url; ?>coreui/assets/img/avatars/8.jpg" alt="user@email.com"></div>
+                    <div class="avatar avatar-md"><img class="avatar-img" src="<?php echo $base_url; ?>images/your-logo-here" alt="user@email.com"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <!-- Account menu items -->
@@ -127,24 +82,14 @@
             </li>
         </ul>
     </div>
+    <div class="container-fluid px-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-0">
+            <li class="breadcrumb-item"><a href="<?php echo $base_url; ?>portal/admin_portal.php">Home</a></li>
+            <li class="breadcrumb-item active"><span><?php echo $page_title; ?></span></li>
+            </ol>
+        </nav>
+    </div>
+
 </header>
 
-
-<script src="<?php echo $base_url; ?>coreui/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-<script src="<?php echo $base_url; ?>coreui/vendors/simplebar/js/simplebar.min.js"></script>
-<script>
-  const header = document.querySelector('header.header');
-
-  document.addEventListener('scroll', () => {
-    if (header) {
-      header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
-    }
-  });
-</script>
-
-<!-- Plugins and scripts required by this view -->
-<script src="<?php echo $base_url; ?>coreui/vendors/chart.js/js/chart.umd.js"></script>
-<script src="<?php echo $base_url; ?>coreui/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-<script src="<?php echo $base_url; ?>coreui/vendors/@coreui/utils/js/index.js"></script>
-<script src="<?php echo $base_url; ?>coreui/js/main.js"></script>
-</body>

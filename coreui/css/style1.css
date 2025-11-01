@@ -1,0 +1,55 @@
+/* sidebar.css */
+
+/* Apply the font to the sidebar */
+.sidebar {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Sidebar titles */
+.nav-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #b0bec5;
+  margin-top: 1rem;
+}
+
+/* Sidebar links */
+.nav-link {
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+/* Submenu items */
+.nav-group-items .nav-link {
+  font-size: 0.85rem;
+  padding-left: 2rem;
+}
+
+/* Sidebar header */
+.sidebar-header .sidebar-brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+/* Active sidebar link */
+.sidebar .nav-link.active {
+    background-color: #F4F4F4 !important;  /* light gray background */
+    color: #000000 !important;             /* black text */
+}
+
+/* Optional: hover for non-active links */
+.sidebar .nav-link:hover {
+    background-color: #F4F4F4 !important;  /* slightly lighter gray */
+    color: #000000 !important;
+}

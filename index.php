@@ -28,7 +28,7 @@ include 'base_url.php';
 <title>Login | EduSync</title>
 
 <!-- ✅ CSS and JS paths now use $base_url -->
-<link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
+<link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style1.css">
 <script src="<?php echo $base_url; ?>assets/js/tailwind.min.js"></script>
 <script src="<?php echo $base_url; ?>assets/js/feather.min.js"></script>
 
@@ -36,16 +36,14 @@ include 'base_url.php';
 <body class="min-h-screen flex items-center justify-center bg-gray-50">
 
 <main class="container mx-auto px-4 py-12 flex items-center justify-center min-h-[calc(100vh-200px)]">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 fade-in">
+    <div class="w-full max-w-xs bg-white rounded-xl shadow-lg p-10 fade-in">
         <div class="text-center mb-8">
             <div class="w-24 h-24 mx-auto mb-4">
-                <!-- ✅ Image uses base_url -->
                 <img src="<?php echo $base_url; ?>images/your-logo-here.png" alt="School Logo" class="w-full h-full object-contain">
             </div>
             <h1 class="text-2xl font-bold text-gray-800">SCHOOL NAME</h1>
         </div>
         
-        <!-- ✅ Form still works normally -->
         <form class="space-y-6" method="POST" action="<?php echo $base_url; ?>auth/auth.php">
             <?php if (isset($_SESSION['error'])): ?>
                 <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
@@ -58,7 +56,7 @@ include 'base_url.php';
                     <i data-feather="user" class="text-gray-400"></i>
                 </div>
                 <input type="text" id="username" name="username" required
-                       class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                       class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                        placeholder="Username">
             </div>
 
@@ -67,10 +65,9 @@ include 'base_url.php';
                     <i data-feather="key" class="text-gray-400"></i>
                 </div>
                 <input type="password" id="password" name="password" required
-                       class="pl-10 pr-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                       class="pl-10 pr-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                        placeholder="••••••••">
 
-                <!-- Show/Hide Icon -->
                 <button type="button" id="togglePassword"
                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
                     <i data-feather="eye"></i>
@@ -90,13 +87,18 @@ include 'base_url.php';
 
             <div class="space-y-4">
                 <button type="submit"
-                        class="w-full bg-gradient-to-r from-pink-500 via-yellow-400 to-blue-500 hover:from-pink-600 hover:via-yellow-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                        class="w-full text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300"
+                        style="background-color: #0C2B4E;"
+                        onmouseover="this.style.backgroundColor='#0A2540'"
+                        onmouseout="this.style.backgroundColor='#0C2B4E'">
                     Log In
                 </button>
+
             </div>
         </form>
     </div>
 </main>
+
 
 <!-- ✅ Feather icons script -->
 <script>
